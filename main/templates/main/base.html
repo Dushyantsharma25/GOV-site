@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+                <img src="{% static 'main/images/logo.jpeg' %}" alt="Logo" class="navbar-logo me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <!-- Carousel -->
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'main/images/1.jpeg' %}" class="d-block w-100 carousel-img" alt="Nature">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'main/images/2.jpeg' %}" class="d-block w-100 carousel-img" alt="Nature">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'main/images/3.jpeg' %}" class="d-block w-100 carousel-img" alt="Nature">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'main/images/3.jpeg' %}" class="d-block w-100 carousel-img" alt="Business">
+            <div class="carousel-caption">
+                <h5>Business Solutions</h5>
+                <p>Professional services for your needs</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'main/images/3.jpeg' %}" class="d-block w-100 carousel-img" alt="Travel">
+            <div class="carousel-caption">
+                <h5>Travel Adventures</h5>
+                <p>Explore exciting destinations worldwide</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle-btn" id="chatToggleBtn">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Assistant</span>
+                </div>
+                <button class="chat-close-btn" id="chatCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        <div class="message-content">
+                            <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <form id="chatForm" class="chat-form">
+                    <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@google/generative-ai@0.2.0/dist/web.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main/js/carousel.js' %}"></script>
+    <script src="{% static 'main/js/chat.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 
