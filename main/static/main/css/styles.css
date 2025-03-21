@@ -306,7 +306,7 @@ body {
 
 .counter-box:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 10px rgba(255, 153, 51,0.8);
 }
 
 .counter-box:hover::before {
