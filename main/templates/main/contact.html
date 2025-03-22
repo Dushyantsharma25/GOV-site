@@ -1,8 +1,32 @@
 {% extends 'main/base.html' %}
 
+{% load static %}
+
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<h1>Contact Us</h1>
-<p>This is the contact page.</p>
+
+
+
+
+<div class="back">
+    <div class="main_form">
+        <h1 id="title">Contact Us</h1>
+        <form action="empty" method="post" class="details">
+            <label for="name">
+                Name 
+                <input type="text" id="name" required placeholder="Enter your name"/>
+            </label>
+            <label for="email">
+                Email 
+                <input type="email" id="email" required placeholder="Enter your Email"/>
+            </label>
+            <label for="comments" class="comment_details">
+                Comments 
+                <textarea placeholder="Enter your comments ..." id="comments" required></textarea>
+            </label>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+</div>
 {% endblock %} 
