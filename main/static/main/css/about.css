@@ -1,4 +1,43 @@
-.main_h{
-    background-color: #000;
+.cover{
     width: 100%;
+    margin: 50px auto;
+    padding: 30px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-image: url('../images/g2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 5px 5px rgb(39, 37, 37);
+    border: none;
+}
+
+
+
+.main_h{
+    background-color: rgba(138, 132, 132,0.9);
+    max-width: 700px;
+    min-width: 100px;
+    padding: 20px;
+    margin:50px auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgb(39, 37, 37);
+    border: none;
+}
+
+.title1{
+    text-align: center;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+
+.para{
+    width: fit-content;
+    text-align: center;
+    margin: 10px auto;
 }
